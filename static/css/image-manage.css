@@ -1,0 +1,61 @@
+h1 {
+    margin: 0;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--user-manage-border-color);
+    text-align: center;
+}
+
+form[name="upload-image"] {
+    display: flex;
+    height: 45px;
+    margin: 1.5rem 0 0 0;
+}
+
+form[name="upload-image"] label {
+    display: block;
+    flex: 1;
+    margin: 0;
+}
+
+form[name="upload-image"] input[name="images"] {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+form[name="upload-image"] button[type="submit"] {
+    display: block;
+    width: 70px;
+    height: 100%;
+    padding: 0;
+}
+
+#image-list ul {
+    margin: 1.5em 0;
+}
+
+#image-list ul li {
+    position: relative;
+    padding-right: calc(var(--font-size) * 1.5);
+}
+
+#image-list ul li .delete-image {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(var(--font-size) * 1.5);
+    margin-bottom: 0;
+    padding: 0;
+    border-width: 0;
+    background-color: #b02a37;
+}
+
+#image-list ul li .delete-image::after {
+    font-family: "icomoon";
+    content: "\e9ac";
+}
+
+#image-list ul li a {
+    display: block;
+}

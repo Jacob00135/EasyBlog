@@ -1,0 +1,11 @@
+[class$="form"] {
+    max-width: 540px;
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    margin-bottom: calc(var(--typography-spacing-vertical) - 17px);
+    text-align: center;
+}

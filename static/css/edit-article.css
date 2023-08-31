@@ -1,0 +1,204 @@
+/* 更改宏观布局 */
+html,
+body {
+    height: 100%;
+}
+
+#root {
+    display: flex;
+    height: 100%;
+    padding: var(--nav-height) 0 0 0;
+}
+
+#top-nav > nav {
+    padding-left: 0;
+}
+
+#editor,
+#previewer {
+    flex: 1;
+    margin: 0;
+}
+
+#editor {
+    margin-right: 2px;
+    padding: 4px 2px 3px 2px;
+}
+
+#previewer {
+    overflow: auto;
+    padding: var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
+}
+
+#editor textarea {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    margin-bottom: -4px;
+    resize: none;
+    font-family: "Consolas","Menlo","Roboto Mono","Ubuntu Monospace","Noto Mono","Oxygen Mono","Liberation Mono",monospace,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+html:not([data-theme]) #editor textarea,
+html:not([data-theme]) #previewer,
+html[data-theme=light] #editor textarea,
+html[data-theme=light] #previewer {
+    background-color: #fefefe;
+}
+
+/* 导航栏修改文章标题组件 */
+#top-nav .title {
+    position: relative;
+    flex: 1;
+    height: calc(var(--nav-height) - 4px);
+    margin: 2px 10px;
+    padding-right: calc(var(--nav-height) - 6px + 1px);
+    border: 1px solid #878787;
+    border-radius: 4px;
+}
+
+#top-nav .title input[name="article-title"] {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0 0 0 16px;
+    border-width: 0;
+    border-radius: 4px 0 0 4px;
+    background-color: var(--nav-article-title-input-bgc);
+    line-height: cale(var(--nav-height) - 6px);
+}
+
+#top-nav .title input[name="article-title"][readonly] {
+    background-color: transparent;
+}
+
+#top-nav .title input[name="article-title"]:focus {
+    box-shadow: none;
+}
+
+#top-nav .title .update-title {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(var(--nav-height) - 6px + 1px);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    border-left: 1px solid #878787;
+    border-radius: 0 4px 4px 0;
+    background-color: transparent;
+    text-align: center;
+    line-height: cale(var(--nav-height) - 6px);
+    color: var(--primary);
+}
+
+#top-nav .title .update-title:hover {
+    background-color: var(--nav-a-bgc);
+}
+
+#top-nav .title .update-title:focus {
+    box-shadow: none;
+}
+
+#top-nav .title .update-title::before {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 4px 4px 0;
+    text-align: center;
+    line-height: calc(var(--nav-height) - 6px);
+    font-family: "icomoon";
+}
+
+#top-nav .title .update-title.edit::before {
+    content: "\e905";
+}
+
+#top-nav .title .update-title.submit::before {
+    content: "\ea10";
+}
+
+/* 导航栏设置相关的组件 */
+#top-nav .setting summary::after {
+    content: "\e994";
+}
+
+#top-nav .setting ul li a {
+    position: relative;
+    padding-left: 40px!important;
+    text-align: left;
+}
+
+#top-nav .setting ul li a::after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 11px;
+    height: 100%;
+    font-family: "icomoon";
+    text-align: center;
+    line-height: var(--nav-height);
+}
+
+#top-nav .setting ul li a[data-selected="0"]::after {
+    content: "\ea56";
+}
+
+#top-nav .setting ul li a[data-selected="1"]::after {
+    content: "\ea54";
+}
+
+#top-nav .render {
+    width: 50px;
+}
+
+#top-nav .render a::before {
+    content: "\e982";
+}
+
+#top-nav .save {
+    width: 50px;
+}
+
+#top-nav .save a::before {
+    content: "\e962";
+}
+
+#top-nav .jump-to-article-page {
+    width: 50px;
+}
+
+#top-nav .jump-to-article-page a::before {
+    content: "\ea7e";
+}
+
+#top-nav .insert-image summary::after {
+    content: "\e90d";
+}
+
+#top-nav .insert-image .empty-image-list {
+    border-bottom: 1px solid var(--user-manage-border-color);
+    border-radius: .25rem;
+}
+
+#top-nav .insert-image .image-list {
+    height: 500px;
+    max-width: 500px;
+    max-height: 500px;
+    border-width: 0;
+}
+
+#top-nav .insert-image .image-list ul {
+    overflow: auto;
+    flex-direction: column;
+}
+
+#top-nav .insert-image .image-list ul li a {
+    text-align: left;
+}

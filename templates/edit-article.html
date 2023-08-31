@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% import "macro.html" as macro %}
+
+{% block title %}{{ article.article_title }}{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/static/css/edit-article.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/code-hilite.css" />
+{% endblock style %}
+
+{% block edit_article_action %}
+<ul>
+    <li>
+        <details class="setting" role="list">
+            <summary aria-haspopup="listbox" title="编辑器设置"></summary>
+            <ul role="listbox">
+                <li>
+                    <a href="javascript:;" class="render-option" data-selected="0" data-render-method="manually">
+                        手动渲染
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="render-option" data-selected="0" data-render-method="no-interval">
+                        无间隔实时渲染
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="render-option" data-selected="1" data-render-method="interval">
+                        有间隔实时渲染
+                    </a>
+                </li>
+
+                <li class="hr"><hr></li>
+
+                <li>
+                    <a href="javascript:;" class="auto-save" data-selected="1">自动保存</a>
+                </li>
+
+                <li class="hr"><hr></li>
+
+                <li>
+                    <a href="javascript:;" class="show-mode-option" data-selected="0"
+                        data-show-mode="only-editor">
+                        仅显示编辑器
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="show-mode-option" data-selected="0"
+                        data-show-mode="only-previewer">
+                        仅显示预览器
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="show-mode-option" data-selected="1"
+                        data-show-mode="show-all">
+                        显示所有
+                    </a>
+                </li>
+            </ul>
+        </details>
+    </li>
+    <li class="save" data-save-url="{{ url_for('save_article') }}">
+        <a href="javascript:;" title="保存文章"></a>
+    </li>
+    <li>
+        <details class="insert-image" role="list"
+            data-get-image-list-url="{{ url_for('get_markdown_image_list') }}">
+            <summary aria-haspopup="listbox" title="插入图片"></summary>
+            <ul role="listbox">
+                <li class="empty-image-list hidden">
+                    <a href="javascript:;">没有图片</a>
+                </li>
+                <li class="image-list">
+                    <ul role="listbox">
+                    </ul>
+                </li>
+            </ul>
+        </details>
+    </li>
+    <li class="render">
+        <a href="javascript:;" title="渲染Markdown"></a>
+    </li>
+    {{ macro.nav_download_md_btn() }}
+    <li class="jump-to-article-page">
+        <a title="转到文章页面"
+            href="{{ url_for('show_article', article_id=article.article_id) }}">
+        </a>
+    </li>
+    {{ macro.nav_delete_article_btn() }}
+</ul>
+<div class="title">
+    <input type="text" name="article-title" value="{{ article.article_title }}"
+        data-submit-url="{{ url_for('update_article_title') }}"
+        required autocomplete="off" readonly title="文章标题" />
+    <button class="update-title edit" title="修改文章标题" type="button"></button>
+</div>
+{% endblock edit_article_action %}
+
+{% block content %}
+<article id="editor" data-convert-url="{{ url_for('md_to_html') }}">
+    <textarea name="src">{{ article.article_source_markdown }}</textarea>
+</article>
+<article id="previewer" data-article-id="{{ article.article_id }}">
+    {{ article_html | safe }}
+</article>
+{% endblock content %}
+
+{% block javascript %}
+<script src="/static/js/edit-article.js"></script>
+{% endblock javascript %}

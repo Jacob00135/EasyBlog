@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}图片管理{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/static/css/image-manage.css" />
+{% endblock style %}
+
+{% block content %}
+<article id="image-list" data-delete-image-url="{{ url_for('delete_image') }}">
+    <h1>图片列表</h1>
+
+    <form name="upload-image" method="post" enctype="multipart/form-data"
+        action="{{ url_for('upload_image') }}">
+        <label for="image-filename">
+            <input type="file" id="image-upload" name="images" multiple="multiple"
+                required autocomplete="off" accept="image/*" />
+        </label>
+        <button type="submit">上传</button>
+    </form>
+
+    <ul>
+        {% for fn in filenames %}
+        <li>
+            <a href="{{ route_prefix}}/{{ fn }}" title="{{ fn }}" target="_blank">{{ fn | safe }}</a>
+            <button type="button" class="delete-image" data-image-filename={{ fn }}></button>
+        </li>
+        {% endfor %}
+    </ul>
+</article>
+{% endblock content %}
+
+{% block javascript %}
+
+<script type="text/javascript" src="/static/js/image-manage.js"></script>
+
+{% for message in get_flashed_messages() %}
+    <script type="text/javascript">
+        showHintBox('{{ message }}', 'error', 'up to down');
+    </script>
+{% endfor %}
+
+{% endblock javascript %}

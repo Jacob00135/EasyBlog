@@ -1,0 +1,598 @@
+/* 引入字体图标 */
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?iupg7v');
+  src:  url('fonts/icomoon.eot?iupg7v#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?iupg7v') format('truetype'),
+    url('fonts/icomoon.woff?iupg7v') format('woff'),
+    url('fonts/icomoon.svg?iupg7v#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-home3:before {
+  content: "\e902";
+}
+.icon-pencil:before {
+  content: "\e905";
+}
+.icon-image:before {
+  content: "\e90d";
+}
+.icon-images:before {
+  content: "\e90e";
+}
+.icon-floppy-disk:before {
+  content: "\e962";
+}
+.icon-user:before {
+  content: "\e971";
+}
+.icon-spinner9:before {
+  content: "\e982";
+}
+.icon-search:before {
+  content: "\e986";
+}
+.icon-cog:before {
+  content: "\e994";
+}
+.icon-bin:before {
+  content: "\e9ac";
+}
+.icon-cloud-download:before {
+  content: "\e9c2";
+}
+.icon-download3:before {
+  content: "\e9c7";
+}
+.icon-warning:before {
+  content: "\ea07";
+}
+.icon-plus:before {
+  content: "\ea0a";
+}
+.icon-info:before {
+  content: "\ea0c";
+}
+.icon-cancel-circle:before {
+  content: "\ea0d";
+}
+.icon-checkmark:before {
+  content: "\ea10";
+}
+.icon-arrow-up:before {
+  content: "\ea32";
+}
+.icon-checkbox-checked:before {
+  content: "\ea52";
+}
+.icon-radio-checked:before {
+  content: "\ea54";
+}
+.icon-radio-unchecked:before {
+  content: "\ea56";
+}
+.icon-new-tab:before {
+  content: "\ea7e";
+}
+
+/* CSS变量定义 */
+:root {
+    --nav-height: 50px;
+    --hint-box-height: 50px;
+    --article-list-footer-height: 20px;
+}
+
+html:not([data-theme]):root,
+html[data-theme=light]:root {
+    --body-bgc: #ffffff;
+
+    --nav-bgc: #edf0f3;
+    --nav-a-bgc: #cdd9e2;
+
+    --hint-border-color: rgb(158, 197, 254);
+    --hint-bgc: rgb(207, 226, 255);
+    --hint-color: rgb(10, 88, 202);
+    --success-border-color: rgb(163, 207, 187);
+    --success-bgc: rgb(209, 231, 221);
+    --success-color: rgb(20, 108, 67);
+    --warning-border-color: rgb(255, 230, 156);
+    --warning-bgc: rgb(255, 243, 205);
+    --warning-color: rgb(153, 116, 4);
+    --error-border-color: rgb(241, 174, 181);
+    --error-bgc: rgb(248, 215, 218);
+    --error-color: rgb(176, 42, 55);
+
+    --user-manage-bgc: #fbfbfc;
+    --user-manage-border-color: #dddeee;
+
+    --article-list-box-shadow: 0 0 10px 1px rgba(50, 50, 50, 0.2);
+    --article-list-a-bgc: #fbfbfc;
+
+    --previewer-table-box-shadow: var(--card-box-shadow);
+
+    --nav-article-title-input-bgc: #fefefe;
+
+    --code-normal-color: #000000;
+    --code-line-num-border-color: #bfbfbf;
+    --code-line-num-color: #848b95;
+}
+
+html[data-theme=dark]:root {
+    --body-bgc: #11191f;
+
+    --nav-bgc: #374956;
+    --nav-a-bgc: #29333b;
+
+    --hint-border-color: rgb(8, 66, 152);
+    --hint-bgc: rgb(3, 22, 51);
+    --hint-color: rgb(110, 168, 254);
+    --success-border-color: rgb(15, 81, 50);
+    --success-bgc: rgb(5, 27, 17);
+    --success-color: rgb(117, 183, 152);
+    --warning-border-color: rgb(102, 77, 3);
+    --warning-bgc: rgb(51, 39, 1);
+    --warning-color: rgb(255, 218, 106);
+    --error-border-color: rgb(132, 32, 41);
+    --error-bgc: rgb(44, 11, 14);
+    --error-color: rgb(234, 134, 143);
+
+    --user-manage-bgc: #1b2832;
+    --user-manage-border-color: #333444;
+
+    --article-list-box-shadow: var(--card-box-shadow);
+    --article-list-a-bgc: #18232c;
+
+    --previewer-table-box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.2);
+
+    --nav-article-title-input-bgc: #18232c;
+
+    --code-normal-color: #bbc6ce;
+    --code-line-num-border-color: #707070;
+    --code-line-num-color: #848b95;
+}
+
+/* 工具类 */
+.hidden {
+    display: none!important;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: '';
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* 宏观布局 */
+/** {
+    transition: background-color .5s;
+}*/
+
+body {
+    background-color: var(--body-bgc);
+}
+
+#root {
+    padding-top: var(--nav-height);
+    padding-bottom: 50px;
+}
+
+/* 对原有的预览器样式作修改 [start] */
+#previewer {
+    font-family: "Consolas","Menlo","Roboto Mono","Ubuntu Monospace","Noto Mono","Oxygen Mono","Liberation Mono",monospace,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+#previewer ol > li {
+    margin-left: 13px;
+}
+
+#previewer table {
+    box-shadow: var(--previewer-table-box-shadow);
+}
+
+#previewer tbody tr:nth-child(odd) {
+    background-color: var(--table-row-stripped-background-color);
+}
+
+#previewer .codehilite {
+    display: flex;
+    margin: 1rem 0;
+    border-radius: .5rem;
+    box-shadow: var(--card-box-shadow);
+}
+
+#previewer .codehilite pre code {
+    font-size: 16px;
+}
+
+html[data-theme=dark] #previewer pre {
+    background-color: #18232c;
+}
+
+#previewer .codehilite pre:not(.code-line-num) {
+    flex: 1;
+    border-radius: 0 .25rem .25rem 0;
+}
+
+#previewer .codehilite pre:not(.code-line-num) code .n {
+    color: var(--code-normal-color);
+}
+
+#previewer .codehilite .code-line-num {
+    display: block;
+    height: auto;
+    padding: 1rem 10px;
+    border-right: 1px dotted var(--code-line-num-border-color);
+    border-radius: .25rem 0 0 .25rem;
+}
+
+#previewer .codehilite .code-line-num code {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border-radius: 0;
+    text-align: center;
+}
+
+#previewer .codehilite .code-line-num code .n {
+    color: var(--code-line-num-color);
+}
+/* 对原有的预览器样式作修改 [end] */
+
+/* 顶部导航栏 */
+#top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    box-shadow: 0 1px 0 var(--nav-border-color);
+    background-color: var(--nav-bgc);
+}
+
+#top-nav nav {
+    height: 100%;
+}
+
+#top-nav nav ul,
+#top-nav nav ul li {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#top-nav nav ul li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    text-align: center;
+    line-height: var(--nav-height);
+}
+
+#top-nav nav ul li a:hover,
+#top-nav nav ul li a:focus {
+    background-color: var(--nav-a-bgc);
+}
+
+#top-nav nav ul li a::before {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-family: "icomoon";
+    text-align: center;
+    line-height: var(--nav-height);
+}
+
+#top-nav .index {
+    width: var(--nav-height);
+}
+
+#top-nav .index a::before {
+    content: "\e902";
+}
+
+#top-nav .download-markdown {
+    width: 50px;
+}
+
+#top-nav .download-markdown a::before {
+    content: "\e9c7";
+}
+
+#top-nav .delete-article {
+    width: 50px;
+    background-color: #b54c56;
+}
+
+#top-nav .delete-article a::before {
+    color: #fefefe;
+    content: "\e9ac";
+}
+
+#top-nav .delete-article a:hover,
+#top-nav .delete-article a:focus {
+    background-color: #dc0000;
+}
+
+#top-nav .login a {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+#top-nav .create-article,
+#top-nav .create-article a {
+    width: 50px;
+}
+
+#top-nav .create-article a::before {
+    content: "\ea0a";
+}
+
+#top-nav .image-manage {
+    width: 50px;
+}
+
+#top-nav .image-manage a::before {
+    content: "\e90e";
+}
+
+/* 顶部导航栏的下拉菜单通用样式 [start] */
+
+#top-nav details[role="list"] {
+    height: 100%;
+    line-height: var(--nav-height);
+}
+
+#top-nav details[role="list"] summary {
+    width: 50px;
+    height: 100%;
+    padding: 0;
+    border-width: 0;
+    border-radius: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#top-nav details[role="list"] summary:hover,
+#top-nav details[role="list"] summary:focus {
+    box-shadow: none;
+    background-color: var(--nav-a-bgc);
+}
+
+#top-nav details[role="list"] summary::after {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-image: none;
+    font-family: "icomoon";
+    text-align: center;
+    line-height: var(--nav-height);
+    color: var(--primary);
+    cursor: pointer;
+}
+
+#top-nav details[role="list"] ul {
+    border-width: 0;
+    box-shadow: none;
+}
+
+#top-nav details[role="list"] ul li {
+    border-left: 1px solid var(--user-manage-border-color);
+    border-right: 1px solid var(--user-manage-border-color);
+    background-color: var(--user-manage-bgc);
+}
+
+#top-nav details[role="list"] ul li:first-child {
+    border-top: 1px solid var(--user-manage-border-color);
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+#top-nav details[role="list"] ul li:last-child {
+    border-bottom: 1px solid var(--user-manage-border-color);
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+
+#top-nav details[role="list"] ul li a {
+    padding: 0 16px;
+}
+
+#top-nav details[role="list"] ul li.hr {
+    height: 20px;
+}
+
+#top-nav details[role="list"] ul li.hr > hr {
+    width: 90%;
+    border-color: var(--user-manage-border-color);
+}
+
+/* 顶部导航栏的下拉菜单通用样式 [end] */
+
+#top-nav .user-manage summary::after {
+    content: "\e971";
+}
+
+#top-nav .theme-switcher {
+    position: relative;
+    width: 50px;
+    height: 20px;
+    margin-left: 20px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+#top-nav .theme-switcher button {
+    width: 20px;
+    height: 100%;
+    padding: 0;
+    border-width: 0;
+    border-radius: 20px;
+    transition: .2s all;
+}
+
+html:not([data-theme]) #top-nav .theme-switcher,
+[data-theme=light] #top-nav .theme-switcher {
+    border: 1px solid #9E9E9E;
+    box-shadow: 0 0 1px 1px rgba(100, 100, 100, 0.1) inset;
+    background-color: #f9fafb;
+}
+
+html:not([data-theme]) #top-nav .theme-switcher button,
+[data-theme=light] #top-nav .theme-switcher button {
+    margin-left: 0;
+    background-color: #ffffff;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme=dark] #top-nav .theme-switcher {
+    border: 1px solid #edf0f3;
+    box-shadow: 0 0 5px 1px rgba(255, 255, 255);
+    background-color: #dfe2e5;
+}
+
+[data-theme=dark] #top-nav .theme-switcher button {
+    margin-left: 28px;
+    background-color: #637078;
+}
+
+/* 全局提示框 */
+#hint-box {
+    position: fixed;
+    top: calc(-1 * var(--nav-height) - 4px);
+    left: 50%;
+    z-index: 999;
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    height: var(--hint-box-height);
+    margin-left: -300px;
+    padding: 0 46px 0 16px;
+    border-radius: 6px;
+    line-height: calc(var(--hint-box-height) - 2px);
+}
+
+@media (max-width: 575px) {
+    #hint-box {
+        width: calc(100% - 2px);
+    }
+}
+
+#hint-box[data-hint-type=hint] {
+    border: 1px solid var(--hint-border-color);
+    background-color: var(--hint-bgc);
+    color: var(--hint-color);
+}
+
+#hint-box[data-hint-type=success] {
+    border: 1px solid var(--success-border-color);
+    background-color: var(--success-bgc);
+    color: var(--success-color);
+}
+
+#hint-box[data-hint-type=warning] {
+    border: 1px solid var(--warning-border-color);
+    background-color: var(--warning-bgc);
+    color: var(--warning-color);
+}
+
+#hint-box[data-hint-type=error] {
+    border: 1px solid var(--error-border-color);
+    background-color: var(--error-bgc);
+    color: var(--error-color);
+}
+
+#hint-box .icon {
+    margin-right: 6px;
+    line-height: calc(var(--hint-box-height) - 2px);
+}
+
+#hint-box .text {
+    flex: 1;
+}
+
+@media (max-width: 575px) {
+    #hint-box .text {
+        font-size: 12px;
+    }
+}
+
+#hint-box .close {
+    --size: 30px;
+
+    position: absolute;
+    display: block;
+    top: calc((var(--hint-box-height) - 2px - var(--size))/2);
+    right: 16px;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    background-color: transparent;
+}
+
+#hint-box .close::after {
+    position: absolute;
+    left: 0;
+    top: -5px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: "×";
+    color: var(--contrast);
+    font-size: 1.5rem;
+}
+
+@media (min-width: 576px) {
+    #hint-box .close::after {
+        top: -6px;
+    }
+}
+
+@media (min-width: 768px) {
+    #hint-box .close::after {
+        top: -8px;
+    }
+}
+
+@media (min-width: 992px) {
+    #hint-box .close::after {
+        top: -9px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #hint-box .close::after {
+        top: -10px;
+    }
+}

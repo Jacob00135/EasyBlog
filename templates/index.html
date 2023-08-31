@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}主页{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/static/css/index.css" />
+{% endblock style %}
+
+{% block content %}
+<info class="hidden" data-delete-article-url="{{ url_for('delete_article') }}"></info>
+
+<form name="search_article" method="get" action="{{ url_for('index') }}">
+    <input type="search" name="search-keyword" placeholder="搜索文章标题"
+        required autocomplete="off" />
+</form>
+
+{% for article in article_list %}
+<article class="article" data-article-id="{{ article.article_id }}">
+    <a href="{{ url_for('show_article', article_id=article.article_id) }}">
+        {{ article.article_title }}
+    </a>
+    <div class="footer clearfix">
+        <span class="create-time" title="${createdDateTitle}">
+            创建：{{ moment(article.article_create_time).fromNow() }}
+        </span>
+        <span class="last-modify-time" title="${lastModifiedDateTitle}">
+            修改：{{ moment(article.article_last_modify_time).fromNow() }}
+        </span>
+
+        {% if current_user.is_authenticated %}
+        <div class="article-action">
+            <a class="edit" title="编辑文章"
+                href="{{ url_for('edit_article', article_id=article.article_id) }}">
+            </a>
+            <a class="delete" title="删除文章" href="javascript:;"
+                data-article-id="{{ article.article_id }}">
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</article>
+{% endfor %}
+{% endblock content %}
+
+{% block javascript %}
+<script src="/static/js/index.js"></script>
+{% endblock javascript %}

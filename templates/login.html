@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/static/css/login.css" />
+{% endblock style %}
+
+{% block content %}
+
+{% if form == 'login' %}
+<article class="login-form">
+    <h1>登录</h1>
+    <form name="login" method="post" action="{{ url_for('login') }}">
+        <label for="username">用户名</label>
+        <input type="text" name="username" id="username" placeholder="用户名" autocomplete="off"
+            required data-js-check="1" data-minlength="3" data-maxlength="16"
+            data-illegal-char="{{ Config.USER_NAME_ILLEGAL_CHAR }}"
+            data-illegal-hint="{{ Config.USER_NAME_CHAR_HINT }}" />
+        <label for="password">密码</label>
+        <input type="password" name="password" id="password" placeholder="密码" autocomplete="off"
+            required data-js-check="1" data-minlength="6" data-maxlength="16"
+            data-illegal-char="{{ Config.USER_PASSWORD_ILLEGAL_CHAR }}"
+            data-illegal-hint="{{ Config.USER_PASSWORD_CHAR_HINT }}" />
+        <button type="submit">登录</button>
+    </form>
+</article>
+{% elif form == 'update-user-name' %}
+<article class="update-user-name-form">
+    <h1>更改用户名</h1>
+    <form name="update-user-name" method="post" action="{{ url_for('update_user_name') }}">
+        <label for="old-username">旧用户名</label>
+        <input type="text" id="old-username" value="{{ current_user.user_name }}" readonly="readonly" />
+        <label for="new-username">新用户名</label>
+        <input type="text" name="new-username" id="new-username" placeholder="新用户名" autocomplete="off"
+            required data-js-check="1" data-minlength="3" data-maxlength="16"
+            data-illegel-char="{{ Config.USER_NAME_ILLEGAL_CHAR }}"
+            data-illegal-hint="{{ Config.USER_NAME_CHAR_HINT }}" />
+        <button type="submit">提交</button>
+    </form>
+</article>
+{% elif form == 'update-password' %}
+<article class="update-password-form">
+    <h1>更改密码</h1>
+    <form name="update-password" method="post" action="{{ url_for('update_password') }}">
+        <label for="new-password">新密码</label>
+        <input type="password" name="new-password" id="new-password" placeholder="新密码" autocomplete="off"
+            required data-js-check="1" data-minlength="6" data-maxlength="16"
+            data-illegal-char="{{ Config.USER_PASSWORD_ILLEGAL_CHAR }}"
+            data-illegal-hint="{{ Config.USER_PASSWORD_CHAR_HINT }}" />
+        <button type="submit">提交</button>
+    </form>
+</article>
+{% endif %}
+
+{% endblock content %}
+
+{% block javascript %}
+
+<script type="text/javascript" src="/static/js/login.js"></script>
+
+{% if form == 'update-user-name' %}
+    <script type="text/javascript">
+        showHintBox('{{ Config.USER_NAME_CHAR_HINT }}', 'hint', 'up to down');
+    </script>
+{% elif form == 'update-password' %}
+    <script type="text/javascript">
+        showHintBox('{{ Config.USER_PASSWORD_CHAR_HINT }}', 'hint', 'up to down');
+    </script>
+{% endif %}
+
+{% for message in get_flashed_messages() %}
+    <script type="text/javascript">
+        showHintBox('{{ message }}', 'error', 'up to down');
+    </script>
+{% endfor %}
+
+{% endblock javascript %}

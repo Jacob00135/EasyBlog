@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}页面不存在{% endblock title %}
+
+{% block style %}
+<style>
+    article {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        width: 100%;
+        margin: 0;
+    }
+
+    h1 {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .back-index {
+        display: block;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+<article>
+    <header>
+        <h1>
+            404
+            <br>
+            页面不存在
+        </h1>
+    </header>
+    <a href="{{ url_for('index') }}" role="button" class="back-index">返回主页</a>
+</article>
+{% endblock content %}
+
+{% block javascript %}
+{% endblock javascript %}

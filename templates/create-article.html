@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}新建文章{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/static/css/create-article.css" />
+{% endblock style %}
+
+{% block content %}
+<article class="create-article-form">
+    <h1>新建文章</h1>
+    <form name="create-article" method="post" action="{{ url_for('create_article') }}">
+        <label for="article-title">文章标题</label>
+        <input type="text" name="article-title" id="article-title" placeholder="文章标题"
+            autocomplete="off" required />
+        <button type="submit">确定</button>
+    </form>
+</article>
+{% endblock content %}
+
+{% block javascript %}
+
+<script src="/static/js/create-article.js"></script>
+
+{% for message in get_flashed_messages() %}
+    <script type="text/javascript">
+        showHintBox('{{ message }}', 'error', 'up to down');
+    </script>
+{% endfor %}
+{% endblock javascript %}

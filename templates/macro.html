@@ -1,0 +1,18 @@
+{% macro nav_download_md_btn() %}
+<li class="download-markdown">
+    <a href="javascript:;" title="下载Markdown源文件"></a>
+</li>
+<!-- 样式写在base.css、 交互代码写在base.js -->
+{% endmacro %}
+
+{% macro nav_delete_article_btn() %}
+<li class="delete-article">
+    <info class="hidden" data-delete-article-url="{{ url_for('delete_article') }}"></info>
+    <a href="javascript:;" title="删除文章"></a>
+</li>
+<!--
+  样式写在base.css
+  交互代码写在：
+    1. common.js的getDeleteArticleFunction
+    2. base.js的删除文章绑定事件 -->
+{% endmacro %}

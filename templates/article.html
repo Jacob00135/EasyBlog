@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% import "macro.html" as macro %}
+
+{% block title %}{{ article.article_title }}{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/static/css/article.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/code-hilite.css" />
+{% endblock style %}
+
+{% block nav_left_ul %}
+
+{{ macro.nav_download_md_btn() }}
+
+<li class="export-to-html" data-get-css-url-prefix="/static/css/"
+    data-get-js-url-prefix="/static/js/">
+    <a href="javascript:;" title="导出为html"></a>
+</li>
+
+{% if current_user.is_authenticated %}
+<li class="jump-to-edit-page">
+    <a title="编辑文章"
+        href="{{ url_for('edit_article', article_id=article.article_id) }}">
+    </a>
+</li>
+{{ macro.nav_delete_article_btn() }}
+{% endif %}
+
+{% endblock nav_left_ul %}
+
+{% block content %}
+<h1 class="article-title">
+    {{ article.article_title }}
+    <br>
+    <p class="sub-header">
+        创建于{{ moment(article.article_create_time).fromNow() }}，
+        最后修改于{{ moment(article.article_last_modify_time).fromNow() }}
+    </p>
+</h1>
+
+<article id="editor" class="hidden">
+    <textarea>{{ article.article_source_markdown }}</textarea>
+</article>
+
+<article id="previewer" data-article-id="{{ article.article_id }}">
+    {{ article_html | safe }}
+</article>
+
+<button id="to-top" class="hidden" type="button"></button>
+
+{% endblock content %}
+
+{% block javascript %}
+<script src="/static/js/article.js"></script>
+{% endblock javascript %}

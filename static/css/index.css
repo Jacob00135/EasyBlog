@@ -1,0 +1,87 @@
+form[name="search_article"] {
+    margin: 20px 0 0 0 ;
+}
+
+form[name="search_article"] input[name="search-keyword"] {
+    margin: 0;
+}
+
+.article {
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
+    box-shadow: var(--article-list-box-shadow);
+}
+
+.article > a {
+    display: block;
+    padding: 1rem;
+    border-bottom: 1px solid var(--card-border-color);
+    background-color: var(--article-list-a-bgc);
+    transition: background-color 0s;
+}
+
+.article .footer {
+    padding: 0 1rem;
+}
+
+.article .footer .create-time,
+.article .footer .last-modify-time {
+    float: left;
+    height: calc(var(--article-list-footer-height) + 1rem);
+    padding: .5rem 0;
+    font-size: 14px;
+    color: #73828c;
+    line-height: var(--article-list-footer-height);
+}
+
+.article .footer .create-time {
+    margin-right: 10px;
+}
+
+.article .footer .article-action {
+    float: right;
+    height: calc(var(--article-list-footer-height) + 1rem);
+    padding: .2rem 0;
+}
+
+.article .footer .article-action a {
+    display: block;
+    float: left;
+    width: calc(var(--article-list-footer-height) + .6rem);
+    height: 100%;
+    margin-right: 20px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.article .footer .article-action a:last-of-type {
+    margin-right: 0;
+}
+
+.article .footer .article-action a::after {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: calc(var(--article-list-footer-height) + .6rem);
+    font-family: "icomoon";
+    font-size: 14px;
+    color: #fefefe;
+}
+
+.article .footer .article-action .edit {
+    background-color: var(--primary);
+}
+
+.article .footer .article-action .delete {
+    background-color: #b02a37;
+}
+
+.article .footer .article-action .edit::after {
+    content: "\e905";
+}
+
+.article .footer .article-action .delete::after {
+    content: "\e9ac";
+}
