@@ -71,7 +71,7 @@ flask run -h 0.0.0.0 -p 5000
 
 然后在***进入项目根目录并且已经激活项目环境的情况下***，在cmd执行start.bat，当你看到输出类似以下信息时，说明启动成功：
 
-```cmd
+```text
  * Serving Flask app 'app.py'
  * Debug mode: off
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
