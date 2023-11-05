@@ -28,23 +28,13 @@ venv\Scripts\activate
 5. 安装以下Python三方库：
 
 ```cmd
-pip install Flask==2.3.3
-pip install Flask-SQLAlchemy==3.0.5
-pip install Flask-Login==0.6.2
-pip install Flask-Moment==1.0.5
-pip install Markdown==3.4.4
-pip install Pygments==2.16.1
+pip install -r requirements.txt
 ```
 
 6. 如果安装这些三方库时速度太慢，或者出现超时错误，可以尝试使用镜像源：
 
 ```cmd
-pip install Flask==2.3.3 -i https://mirrors.aliyun.com/pypi/simple/
-pip install Flask-SQLAlchemy==3.0.5 -i https://mirrors.aliyun.com/pypi/simple/
-pip install Flask-Login==0.6.2 -i https://mirrors.aliyun.com/pypi/simple/
-pip install Flask-Moment==1.0.5 -i https://mirrors.aliyun.com/pypi/simple/
-pip install Markdown==3.4.4 -i https://mirrors.aliyun.com/pypi/simple/
-pip install Pygments==2.16.1 -i https://mirrors.aliyun.com/pypi/simple/
+pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 ```
 
 ## 启动项目
