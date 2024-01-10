@@ -50,7 +50,8 @@ class Config(object):
 
     @staticmethod
     def init_app(app):
-        pass
+        if not os.path.exists(Config.MARKDOWN_IMAGE_PATH):
+            os.makedirs(Config.MARKDOWN_IMAGE_PATH)
 
 
 from utils import check_username, check_password
